@@ -1,0 +1,116 @@
+Overview
+
+This advanced project focuses on deep network reconnaissance and enumeration using Nmap on Windows. The objective is to collect detailed intelligence about hosts, open ports, services, operating systems, firewall behavior, and potential security weaknesses within an authorized network. This project is designed for learners with prior knowledge of basic scanning who want to perform optimized, stealth-aware, and in-depth network analysis on Windows systems.
+
+Advanced Lab Requirements
+
+Windows 10 / 11 (64-bit recommended)
+
+Nmap for Windows installed
+
+Command Prompt or PowerShell
+
+Administrator privileges (required for advanced scans)
+
+Authorized local or lab network
+
+Basic understanding of TCP/IP, ports, and firewalls
+
+Tool Setup (Windows)
+Install Nmap
+
+Download Nmap from the official website
+
+Install with Npcap (required for advanced scans)
+
+Open Command Prompt or PowerShell as Administrator
+
+Verify installation:
+
+nmap --version
+
+Advanced Tasks
+1. Host Discovery Without Port Scanning
+
+Identify live hosts without scanning ports:
+
+nmap -sn 192.168.1.0/24
+
+2. Stealth SYN Scan
+
+Perform a stealth TCP SYN scan (Admin required):
+
+nmap -sS 192.168.1.0/24
+
+3. Full TCP Port Scan
+
+Scan all 65,535 TCP ports on a target:
+
+nmap -p- 192.168.1.10
+
+4. UDP Service Enumeration
+
+Enumerate UDP services:
+
+nmap -sU 192.168.1.10
+
+5. Service & Version Enumeration
+
+Detect detailed service and version information:
+
+nmap -sV --version-intensity 9 192.168.1.10
+
+6. Operating System Fingerprinting
+
+Perform OS detection:
+
+nmap -O --osscan-guess 192.168.1.10
+
+7. Firewall & IDS Detection
+
+Analyze firewall filtering behavior:
+
+nmap -sA 192.168.1.10
+
+8. Nmap Scripting Engine (NSE)
+
+Run vulnerability detection scripts:
+
+nmap --script vuln 192.168.1.10
+
+9. IDS Evasion Techniques
+
+Use slow timing and packet fragmentation:
+
+nmap -T2 -f 192.168.1.10
+
+10. Output & Reporting
+
+Save results for documentation and reporting:
+
+nmap -A 192.168.1.10 -oA advanced_scan_report
+
+
+This generates:
+
+advanced_scan_report.nmap
+
+advanced_scan_report.xml
+
+advanced_scan_report.gnmap
+
+Learning Outcomes
+
+Advanced host and service enumeration on Windows
+
+Firewall and IDS behavior analysis
+
+Vulnerability discovery using NSE
+
+Stealth-aware scanning techniques
+
+Professional penetration testing documentation
+
+Ethical Notice
+
+All scans must be conducted only on systems you own or have explicit permission to test. Unauthorized network scanning is illegal and unethical.
