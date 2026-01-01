@@ -1,0 +1,107 @@
+Introduction
+
+In this project, you will learn how to use various tools to perform penetration testing on a vulnerable web application, OWASP Juice Shop. OWASP Juice Shop is a deliberately insecure web application created for educational purposes. This project helps you understand common web vulnerabilities and how they are tested ethically in a controlled lab environment.
+
+Pre-requisites
+
+Basic understanding of web application concepts (HTTP, HTTPS, web servers)
+
+Familiarity with the command line interface (CLI)
+
+Basic knowledge of web technologies (HTML, JavaScript, etc.)
+
+Lab Set-up and Tools
+Diagram
+
+Simple network diagram for the lab setup:
+
++------------------+      +----------------------+
+| Attacker         | <--> | Vulnerable App       |
+| Kali Linux       |      | OWASP Juice Shop     |
+| 192.168.1.100    |      |                      |
++------------------+      +----------------------+
+
+Tools
+
+Kali Linux: Penetration testing Linux distribution
+
+OWASP Juice Shop: Vulnerable web application
+
+Burp Suite: Web application security testing tool
+
+Installation
+OWASP Juice Shop Setup
+
+Install and run OWASP Juice Shop using Docker:
+
+sudo apt-get update
+sudo apt-get install docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+
+
+Pull the Juice Shop image:
+
+sudo docker pull bkimminich/juice-shop
+
+
+Run the container:
+
+sudo docker run -d -p 3000:3000 bkimminich/juice-shop
+
+
+Access the application at:
+
+http://localhost:3000
+
+Tasks
+Task 1: Identify Open Ports
+
+Step 1: Open a terminal on Kali Linux
+Step 2: Scan the OWASP Juice Shop server
+
+nmap 192.168.1.100
+
+
+Expected Output: List of open ports on the target server.
+
+Task 2: SQL Injection
+
+Step 1: Open Burp Suite
+Step 2: Configure browser proxy to 127.0.0.1:8080
+Step 3: Intercept a login request and test for SQL injection
+Expected Output: Successful authentication due to SQL injection vulnerability.
+
+Task 3: Cross-Site Scripting (XSS)
+
+Step 1: Locate a reflected input field (e.g., search bar)
+Step 2: Inject an XSS test payload
+Expected Output: Script execution confirming XSS vulnerability.
+
+Task 4: File Upload Vulnerability
+
+Step 1: Navigate to a file upload feature
+Step 2: Upload a malicious test file
+Expected Output: Ability to upload and access the file, indicating weak validation.
+
+Task 5: Directory Traversal
+
+Step 1: Intercept a request using Burp Suite
+Step 2: Modify parameters to attempt directory traversal
+Expected Output: Access to files outside the web root.
+
+Task 6: Cross-Site Request Forgery (CSRF)
+
+Step 1: Create a test HTML form that performs an authenticated action
+Step 2: Load the form while logged in
+Expected Output: Action executes without explicit user consent.
+
+Additional Resources
+
+OWASP Juice Shop Documentation
+
+Burp Suite Documentation
+
+PortSwigger Web Security Academy
+
+Kali Linux Documentation
