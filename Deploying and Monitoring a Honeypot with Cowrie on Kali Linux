@@ -1,0 +1,108 @@
+Introduction
+
+This project introduces honeypots using Cowrie, a popular SSH and Telnet honeypot. Honeypots are used to safely observe attacker behavior without risking real systems. In this project, you will deploy Cowrie, simulate attacks, and analyze captured logs.
+
+Pre-requisites
+
+Basic knowledge of SSH and Telnet
+
+Familiarity with Linux terminal commands
+
+Understanding of basic network security concepts
+
+Lab Setup and Tools
+Network Diagram
++------------------+        +------------------+
+| Attacker System  | <----> | Honeypot (Cowrie)|
+| Kali Linux       |        | 192.168.1.101    |
+| 192.168.1.100    |        +------------------+
++------------------+
+
+Tools
+
+Kali Linux – Penetration testing OS
+
+Cowrie – SSH/Telnet honeypot
+
+Docker – Container platform
+
+Installation
+Step 1: Install Docker
+sudo apt-get update
+sudo apt-get install docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+
+Step 2: Pull Cowrie Image
+sudo docker pull cowrie/cowrie
+
+Step 3: Run Cowrie Honeypot
+sudo docker run -d -p 2222:2222 -p 2223:2223 --name cowrie cowrie/cowrie
+
+
+Cowrie will now listen on:
+
+SSH: Port 2222
+
+Telnet: Port 2223
+
+Tasks
+Task 1: Verify Honeypot Status
+sudo docker ps
+
+
+Expected Output: Cowrie container running.
+
+Task 2: Simulate an Attack
+ssh root@localhost -p 2222
+
+
+Enter any password.
+
+Expected Output: Fake shell access is granted and logged.
+
+Task 3: View Honeypot Logs
+sudo docker logs cowrie
+
+
+Expected Output: Login attempts and commands appear in logs.
+
+Task 4: Analyze Cowrie Logs
+sudo docker exec -it cowrie /bin/bash
+cd /srv/cowrie/var/log/cowrie
+cat cowrie.json
+
+
+Expected Output: JSON‑formatted attack data.
+
+Task 5: Basic Log Awareness (Optional)
+
+Identify:
+
+Common usernames
+
+Password attempts
+
+Commands used by attackers
+
+Learning Outcomes
+
+Understanding honeypot concepts
+
+Deploying Cowrie using Docker
+
+Monitoring attacker behavior
+
+Analyzing security logs
+
+Ethical Notice
+
+This project must only be performed in authorized lab environments. Honeypots are for learning and research purposes only.
+
+Additional Resources
+
+Cowrie Documentation
+
+Docker Documentation
+
+Kali Linux Documentation
